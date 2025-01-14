@@ -23,7 +23,7 @@ class NotificationAPI(views.APIView):
                 serializer.is_valid(raise_exception=True)
                 serializer.save()
                 data_response.append(serializer.data)
-            return JsonResponse(data=data_response, safe=False)
+            return JsonResponse(data=data_response, safe=False, status=201)
         elif isinstance(recipient, str):
             serializer = NotificationSerializer(data={'recipient': recipient, 'message': data.get('message'), 'delay': data.get('delay')})
             serializer.is_valid(raise_exception=True)

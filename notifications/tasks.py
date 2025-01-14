@@ -10,13 +10,12 @@ from notifications.services import send_telegram_message, send_email
 def send_messages() -> None:
     """Функция-задача
     """
-    messages = Notification.objects.filter(next_send__lte=datetime.datetime.now(timezone(TIME_ZONE)))
+    messages = Notification.objects.filter(next_send__lte=datetime.now(timezone(TIME_ZONE)))
     #  Отправляет сообщение пользователю в телеграм
     for message in messages:
         if message.type == 'telegram':
             send_telegram_message(message)
         elif message.type == 'email':
             send_email(message)
-    print('УРА! ФУНКЦИЯ ЗАКОНЧИЛА РАБОТУ!')
 
 
