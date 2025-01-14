@@ -9,5 +9,3 @@ app_name = NotificationsConfig.name
 urlpatterns = [
     path('api/notify/', views.NotificationAPI.as_view(), name='notification'),
 ]
-
-

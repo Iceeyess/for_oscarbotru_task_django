@@ -1,5 +1,4 @@
-from django.http import JsonResponse, StreamingHttpResponse
-from django.shortcuts import render
+from django.http import JsonResponse
 from rest_framework import views
 from rest_framework.response import Response
 
@@ -25,14 +24,11 @@ class NotificationAPI(views.APIView):
                 data_response.append(serializer.data)
             return JsonResponse(data=data_response, safe=False, status=201)
         elif isinstance(recipient, str):
-            serializer = NotificationSerializer(data={'recipient': recipient, 'message': data.get('message'), 'delay': data.get('delay')})
+            serializer = NotificationSerializer(data={'recipient': recipient, 'message': data.get('message'),
+                                                      'delay': data.get('delay')})
             serializer.is_valid(raise_exception=True)
             serializer.save()
             return Response(serializer.data, status=201)
         else:
-            return Response({'recipient': ['Получатель должен быть валидным адресом электронной почты или номером Телеграм состоящий только из цифр.']}, status=400)
-
-
-
-
-
+            return Response({'recipient': ['Получатель должен быть валидным адресом электронной почты или номером '
+                                           'Телеграм состоящий только из цифр.']}, status=400)
