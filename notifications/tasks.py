@@ -17,5 +17,3 @@ def send_messages() -> None:
             send_telegram_message(message)
         elif message.type == 'email':
             send_email(message)
-
-

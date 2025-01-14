@@ -19,6 +19,7 @@ class Notification(models.Model):
     def __str__(self):
         return f'Notification(id={self.id}))'
 
+
 class LogInfo(models.Model):
     """Класс-модель логирования отправки сообщений"""
     status = models.BooleanField(default=False)

@@ -22,6 +22,7 @@ def email_tg_validation(str_obj: str) -> None:
     elif re.search(r'\s', str_obj):
         raise ValidationError('Получатель не должен содержать пробелы.')
 
+
 def send_telegram_message(message):
     """Функция отправки сообщений через телеграм, а так же логирования"""
 
@@ -50,6 +51,7 @@ def send_telegram_message(message):
         log.status = False
         log.code = response.status_code
         log.save()
+
 
 def send_email(message):
     """Функция отправки сообщений через email, а так же логирования"""

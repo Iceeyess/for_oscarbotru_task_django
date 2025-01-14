@@ -1,6 +1,4 @@
 from rest_framework.validators import ValidationError
-import re
-
 from notifications.services import email_tg_validation
 
 
@@ -9,7 +7,8 @@ class IsRecipientStrOrList:
     def __call__(self, values):
         """Валидация данных строки recipients. Проверяет на """
         if not values:
-            raise ValidationError('Получатель не должен быть пустым, а содержать строковое выражение или список содержащий строковые выражения до 150 символов.')
+            raise ValidationError('Получатель не должен быть пустым, а содержать строковое выражение или список '
+                                  'содержащий строковые выражения до 150 символов.')
         elif isinstance(values, list):
             for val in values:
                 email_tg_validation(val)
@@ -17,6 +16,7 @@ class IsRecipientStrOrList:
             email_tg_validation(values)
         else:
             raise ValidationError('Recipient поле должно содержать типы строка или список содержащий строки')
+
 
 class CheckDelay:
 
